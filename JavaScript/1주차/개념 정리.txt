@@ -1,0 +1,58 @@
+자바스크립트란 무엇인가?
+ - 프로그래밍 언어
+ - 스크립트 언어 - 어떤 어플리케이션에서 코드를 해석하고 실행할 수 있는 엔진이 존재해서 해당 어플리케이션을 제어하는 데 사용
+ - 인터프리터 언어 - 한 줄씩 바로 바로 실행
+ - HTML, CSS, JAVASCRIPT를 가져와 browser 실행
+ - Node.js - javascript로 서버 사이드 만들기 가능
+
+ECMAScript - 스크립트 언어의 표준 명세
+
+Expression - 값을 만들어내는 간단한 코드
+Statement - 표현식이 모여 만들어진 문장, 세미 콜론으로 문장 구분
+
+Keywords
+ - 자바스크립트에서 특정한 목적을 위해 사용하는 단어
+ - 키워드들은 예약어로 지적되어져 있다.
+ - ex) var
+Reserved Words - 프로그램을 작성할 때 변수명, 함수명으로 사용할 수 없다.
+Future reserved keywords - 미래에 사용될 수도 있는 예약어, 마찬가지로 사용불가능
+
+Identifier
+ - 유니코드, $, _, 숫자 사용가능. 
+ - 숫자로 시작 x, 예약어, 공백문자 x
+
+프로그램에서 사용하는 변수나 함수의 이름을 짓는 것은 어려운 일임
+의미없는 이름은 사용하지 않고, 역할에 맞는 적절한 이름을 짓도록 노력해야 한다.
+
+comment
+ - 프로그램에 영향을 주지 않고 무시하는 부분
+ - 소스코드의 이해를 돕는데 사용
+ - '//' '/**/'
+
+variable and constant
+ - 메모리에 값을 보관했다가 사용하고 싶을 때 사용
+ - 코드의 의미가 명확해지고 코드의 불필요한 일이 줄어든다.
+
+const - 상수를_지칭하는_이름(identifier)
+let - 변수를_지칭하는_이름
+
+scope of variable
+ - const, let의 유효 범위 - block scope({}로 이루어진 space)
+ - 밖에서 안으로 범위 -> {} 바깥영역에서 선언하더라도 그 안의 {}에서 사용가능
+ - block은 중첩 가능
+
+var - 변수 선언 방법 - function scope - 현재는 const와 let을 사용 - block에 영향을 받지 않음
+
+var & hoisting - 아래 있는 선언을(만) 끌어올리는 현상 - 값을 끌고가지는 않음
+
+javascript의 자료형
+ - 기본 자료형 - 동적 타이핑 ex) var
+ - 변수가 가지는 고정 타입이 없다. - 타입이 없다는 것을 의미하는 것은 아니다.
+ - 기본 제공 type(Primitive values) - boolean, null, undefined, number, string, symbol
+
+Falsy - boolean은 아니지만 표현식이 거짓을 평가될 때
+ - false, 0, '', null, undefined, NaN
+
+Truethy - boolean은 아니여도 표현식이 참으로 평가될 때
+ - true, 37, 'Mark', {}, []
+ 
