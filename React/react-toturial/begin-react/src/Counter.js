@@ -60,7 +60,6 @@ class Counter extends Component {
         // console.log(this);  // button event 등록되는 과정에서 관계가 끊겨버림
         console.log('increase');
     }
-
     handleDecrease = () => {
         this.setState({
             counter: this.state.counter -1,
