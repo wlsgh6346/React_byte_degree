@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import User from "./User";
 import ErrorBoundary from "./ErrorBoundary";
 
+const a = 1;
+
 function App() {
-  const user = {
-    id : 1,
-    username: 'velopert',
-  }
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    console.log(value);
+  }, [])
   return (
-      <ErrorBoundary>
+      //<ErrorBoundary>
           <User />
-      </ErrorBoundary>
+      //</ErrorBoundary>
   );
 }
 
