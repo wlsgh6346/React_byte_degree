@@ -4,19 +4,28 @@ import { darken, lighten } from 'polished';
 
 const colorStyles = css`
     /* 색상 */
-      ${({theme, color}) => {
-            const selectedcolor = theme.palette[color];
-            return css `
-            background: ${color};
-            &:hover {
-              background: ${lighten(0.1, selectedcolor)};
-            }
-             &:active {
-              background: ${darken(0.1, selectedcolor)};
-             }
-          `;
-        }}
-    `;
+    ${({theme, color}) => {
+    const selectedcolor = theme.palette[color];
+    return css`
+        background: ${selectedcolor};
+        &:hover {
+          background: ${lighten(0.1, selectedcolor)};
+        }
+        &:active {
+          background: ${darken(0.1, selectedcolor)};
+        }
+        ${props => props.outline && css`
+          color: ${selectedcolor};
+          background: none;
+          border: 1px solid ${selectedcolor};
+          &:hover {
+            background: ${selectedcolor};
+            color: white;
+          }  
+         `}
+       `;
+    }}
+`;
 
 const sizes = {
     large:{
@@ -46,6 +55,18 @@ const sizeStyles = css`
   `}
 `;
 
+const fullWidthStyle = css`
+  ${props => props.fullWidth && 
+    css`
+        width: 100%;
+        justify-content: center;
+        & + button {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+    `}
+`;
+
 
 const StyleButton = styled.button`
   /* 공통 스타일 */
@@ -59,21 +80,20 @@ const StyleButton = styled.button`
   padding-left: 1rem;
   padding-right: 1rem;
   
-    
-  
-  ${colorStyles}
-  
-  ${sizeStyles}
-  
   /* 기타 */
-  & + & {
+  & + button {
     margin-left: 1rem;
   }
+  
+  ${colorStyles}
+  ${sizeStyles}
+  ${fullWidthStyle}
+  
 `;
 
-function Button( {children, color, size, ...rest }) {
+function Button( {children, color, size, outline, fullWidth, ...rest }) {
     return (
-        <StyleButton color={color} size={size} {...rest}>
+        <StyleButton color={color} size={size} outline={outline} fullWidth={fullWidth} {...rest}>
             {children}
         </StyleButton>
     )
