@@ -1,3 +1,24 @@
+import { call, put } from 'redux-saga/effects';
+
+export const createPromiseSaga = (type, promiseCreator) => {
+    const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+    return function* saga(action) {
+        try {
+            const result = yield call(promiseCreator, action.payload);
+            yield put({
+                type: SUCCESS,
+                payload: result
+            });
+        } catch (e) {
+            yield put({
+                type: ERROR,
+                error: true,
+                payload: e
+            })
+        }
+    }
+}
+
 export const createPromiseThunk = (type, promiseCreator) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 
@@ -22,13 +43,10 @@ export const createPromiseThunk = (type, promiseCreator) => {
 
 // 특정 id 를 처리하는 Thunk 생성함수
 const defaultIdSelector = param => param;
+
 export const createPromiseThunkById = (
     type,
     promiseCreator,
-    // 파라미터에서 id 를 어떻게 선택 할 지 정의하는 함수입니다.
-    // 기본 값으로는 파라미터를 그대로 id로 사용합니다.
-    // 하지만 만약 파라미터가 { id: 1, details: true } 이런 형태라면
-    // idSelector 를 param => param.id 이런식으로 설정 할 수 있곘죠.
     idSelector = defaultIdSelector
 ) => {
     const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
@@ -45,6 +63,27 @@ export const createPromiseThunkById = (
     };
 };
 
+export const createPromiseSagaById = (type, promiseCreator) => {
+    const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+    return function* saga(action) {
+        const id = action.meta
+        try {
+            const result = yield call(promiseCreator, action.payload);
+            yield put({
+                type: SUCCESS,
+                payload: result,
+                meta: id
+            });
+        } catch (e) {
+            yield put({
+                type: ERROR,
+                error: true,
+                payload: e,
+                meta: id
+            })
+        }
+    }
+}
 export const handleAsyncActions = (type, key, keepData) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   return (state, action) => {
