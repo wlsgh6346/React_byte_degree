@@ -1,5 +1,5 @@
-const ADD_TODO = 'todos/ADD_TODO';
-const TOGGLE_TODO = 'todos/TOGGLE_TODO';
+const ADD_TODO = 'index/ADD_TODO';
+const TOGGLE_TODO = 'index/TOGGLE_TODO';
 
 const initialState = [
     /*
